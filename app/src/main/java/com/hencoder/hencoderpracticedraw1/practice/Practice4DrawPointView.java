@@ -2,22 +2,40 @@ package com.hencoder.hencoderpracticedraw1.practice;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
 public class Practice4DrawPointView extends View {
+    private Paint mPaint, mPaint2;
 
     public Practice4DrawPointView(Context context) {
         super(context);
+        initPaint();
     }
 
     public Practice4DrawPointView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initPaint();
     }
 
     public Practice4DrawPointView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initPaint();
+    }
+
+    private void initPaint() {
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        // paint for drawing round dot
+        mPaint.setStrokeWidth(80);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+
+        // paint for drawing rect dot
+        mPaint2.setStrokeWidth(80);
+        mPaint2.setStrokeCap(Paint.Cap.BUTT);
     }
 
     @Override
@@ -27,5 +45,11 @@ public class Practice4DrawPointView extends View {
 //        练习内容：使用 canvas.drawPoint() 方法画点
 //        一个圆点，一个方点
 //        圆点和方点的切换使用 paint.setStrokeCap(cap)：`ROUND` 是圆点，`BUTT` 或 `SQUARE` 是方点
+
+        // draw round dot
+        canvas.drawPoint(360, 360, mPaint);
+
+        // draw rect dot
+        canvas.drawPoint(720, 360, mPaint2);
     }
 }
